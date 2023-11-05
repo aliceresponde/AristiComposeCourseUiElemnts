@@ -29,8 +29,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.aliceresponde.aristicomposecourse.ui.theme.AristiComposeCourseTheme
@@ -42,10 +46,46 @@ class MainActivity : ComponentActivity() {
             AristiComposeCourseTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    MyStateSample()
+                    MyTextSample()
                 }
             }
         }
     }
 }
 
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun MyTextSample() {
+    Column(
+        Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(text = "Hello World!")
+        Text(text = "Hello World!", color = Color.Red)
+        Text(text = "Hello World!", Modifier.size(100.dp, 100.dp))
+        Text(text = "Hello World!",
+            Modifier
+                .size(100.dp, 100.dp)
+                .background(Color.Red))
+        Text(text = "Hello World!", fontSize = 20.sp)
+        Text(text = "Hello World!", fontFamily = FontFamily.Cursive)
+        Text(text = "Hello World!", fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
+        Text(text = "Hello World!", style = TextStyle(fontFamily = FontFamily.Cursive))
+        Text(
+            text = "Hello World!",
+            style = TextStyle(
+                fontFamily = FontFamily.Cursive,
+                fontSize = 20.sp,
+                textDecoration = TextDecoration.LineThrough
+            )
+        )
+        Text(
+            text = "Hello World!", style = TextStyle(
+                fontFamily = FontFamily.Cursive, fontSize = 20.sp, textDecoration = TextDecoration.combine(
+                    listOf(TextDecoration.LineThrough, TextDecoration.Underline)
+                )
+            )
+        )
+
+    }
+}
